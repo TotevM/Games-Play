@@ -1,41 +1,35 @@
-export default function catalogue() {
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
+
+export default function Catalogue() {
+    const [games, setGames] = useState([]);
+
+        useEffect(() => {
+            fetch('http://localhost:3030/jsonstore/games')
+                .then((response) => response.json())
+                .then((res) => setGames(Object.values(res)));
+        }, []);
+
     return (
         <section id='catalog-page'>
             <h1>All Games</h1>
             {/* <!-- Display div: with information about every game (if any) --> */}
-            <div className='allGames'>
-                <div className='allGames-info'>
-                    <img src='./images/avatar-1.jpg'></img>
-                    <h6>Action</h6>
-                    <h2>Cover Fire</h2>
-                    <a href='#' className='details-button'>
-                        Details
-                    </a>
-                </div>
-            </div>
-            <div className='allGames'>
-                <div className='allGames-info'>
-                    <img src='./images/avatar-1.jpg'></img>
-                    <h6>Action</h6>
-                    <h2>Zombie lang</h2>
-                    <a href='#' className='details-button'>
-                        Details
-                    </a>
-                </div>
-            </div>
-            <div className='allGames'>
-                <div className='allGames-info'>
-                    <img src='./images/avatar-1.jpg'></img>
-                    <h6>Action</h6>
-                    <h2>MineCraft</h2>
-                    <a href='#' className='details-button'>
-                        Details
-                    </a>
-                </div>
-            </div>
-
-            {/* <!-- Display paragraph: If there is no games  --> */}
-            <h3 className='no-articles'>No articles yet</h3>
+            {games.length !== 0 ? (
+                games.map((game) => (
+                    <div className='allGames' key={game._id}>
+                        <div className='allGames-info'>
+                            <img src={game.imageUrl} alt={game.title}></img>
+                            <h6>{game.category}</h6>
+                            <h2>{game.title}</h2>
+                            <Link to={'/games/'+game._id+'/info'} className='details-button'>
+                                Details
+                            </Link>
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <h3 className='no-articles'>No games yet</h3>
+            )}
         </section>
     );
 }
