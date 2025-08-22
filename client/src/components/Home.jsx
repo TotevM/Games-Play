@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import heroImg from '../images/four_slider_img01.png';
+import { Link } from 'react-router';
 
 export default function Home() {
     const [games, setGames] = useState([]);
@@ -34,38 +35,15 @@ export default function Home() {
                                 <span>☆</span>
                             </div>
                             <div className='data-buttons'>
-                                <a href='#' className='btn details-btn'>
+                                <Link to={'/games/'+game._id+'/info'} className='btn details-btn'>
                                     Details
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     ))
                 ) : (
                     <p className='no-articles'>No games yet</p>
                 )}
-                {/* <h1>Latest Games</h1>
-                {games.map((game) => (
-                    <div className='game' key={game._id}>
-                        <div className='image-wrap'>
-                            <img src={game.imageUrl}></img>
-                        </div>
-                        <h3>{game.title}</h3>
-                        <div className='rating'>
-                            <span>☆</span>
-                            <span>☆</span>
-                            <span>☆</span>
-                            <span>☆</span>
-                            <span>☆</span>
-                        </div>
-                        <div className='data-buttons'>
-                            <a href='#' className='btn details-btn'>
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                ))}
-
-                <p className='no-articles'>No games yet</p> */}
             </div>
         </section>
     );
