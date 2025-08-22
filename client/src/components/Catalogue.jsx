@@ -13,12 +13,11 @@ export default function Catalogue() {
     return (
         <section id='catalog-page'>
             <h1>All Games</h1>
-            {/* <!-- Display div: with information about every game (if any) --> */}
             {games.length !== 0 ? (
                 games.map((game) => (
                     <div className='allGames' key={game._id}>
                         <div className='allGames-info'>
-                            <img src={game.imageUrl} alt={game.title}></img>
+                            <img src={game ? game.imageUrl : null} alt={game.title}></img>
                             <h6>{game.category}</h6>
                             <h2>{game.title}</h2>
                             <Link to={'/games/'+game._id+'/info'} className='details-button'>

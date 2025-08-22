@@ -56,7 +56,7 @@ blockquote {
     margin: 0.5em;
 }
 
-blockquote>cite {
+blockquote > cite {
     display: block;
     text-align: right;
     margin: 0.5em 2em;
