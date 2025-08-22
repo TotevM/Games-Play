@@ -7,6 +7,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import GameCreate from './components/GameCreate';
 import GameDetails from './components/GameDetails';
+import GameEdit from './components/GameEdit';
+
 function App() {
     return (
         <div id='box'>
@@ -17,6 +19,7 @@ function App() {
                     <Route path='/gameCreate' element={<GameCreate />} />
                     <Route path='/games' element={<Catalogue />} />
                     <Route path='/games/:gameId/info' element={<GameDetails />} />
+                    <Route path='/games/:gameId/edit' element={<GameEdit />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                 </Routes>
