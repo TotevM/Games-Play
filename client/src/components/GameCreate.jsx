@@ -1,7 +1,30 @@
+import { useNavigate } from "react-router";
+
 export default function GameCreate() {
+    const redirect = useNavigate();
+    const onSubmit = (formData) => {
+
+        fetch('http://localhost:3030/jsonstore/games', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: formData.get('title'),
+                category: formData.get('category'),
+                maxLevel: formData.get('maxLevel'),
+                imageUrl: formData.get('imageUrl'),
+                summary: formData.get('summary'),
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            });
+
+        redirect('/games');
+    };
     return (
         <section id='create-page' className='auth'>
-            <form id='create'>
+            <form id='create' action={onSubmit}>
                 <div className='container'>
                     <h1>Create Game</h1>
                     <label htmlFor='leg-title'>Legendary title:</label>
