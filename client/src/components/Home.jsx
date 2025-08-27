@@ -3,6 +3,7 @@ import heroImg from '../images/four_slider_img01.png';
 import { Link } from 'react-router';
 
 export default function Home() {
+    // TODO server filter top 3 by date
     const [games, setGames] = useState([]);
 
     useEffect(() => {
