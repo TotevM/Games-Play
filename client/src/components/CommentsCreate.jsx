@@ -1,4 +1,6 @@
-export default function CommentsShow() {
+export default function CommentsCreate() {
+
+    //todo create comment for gameId
     return (
         <div className='details-comments'>
             <h2>Comments:</h2>
