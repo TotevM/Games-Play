@@ -9,8 +9,9 @@ import GameCreate from './components/GameCreate';
 import GameDetails from './components/GameDetails';
 import GameEdit from './components/GameEdit';
 
-
 function App() {
+
+    //TODO add AuthGuard
     return (
         <userProvider>
             <div id='box'>
