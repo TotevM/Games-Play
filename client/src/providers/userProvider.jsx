@@ -1,5 +1,5 @@
-import { UserContext } from '/contexts/UserContext';
 import usePersistedState from '../hooks/usePersistedState';
+import { UserContext } from '../contexts/UserContext';
 
 export default function UserProvider({ children }) {
     const [authData, setAuthData] = usePersistedState('auth', {});
@@ -13,7 +13,8 @@ export default function UserProvider({ children }) {
     };
 
     return (
-        <UserContext.Provider value={{ ...authData, userLoginHandler, userLogoutHandler }}>
+        <UserContext.Provider
+            value={{ ...authData, userLoginHandler, userLogoutHandler }}>
             {children}
         </UserContext.Provider>
     );

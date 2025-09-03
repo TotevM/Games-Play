@@ -8,12 +8,13 @@ import Register from './components/Register';
 import GameCreate from './components/GameCreate';
 import GameDetails from './components/GameDetails';
 import GameEdit from './components/GameEdit';
+import UserProvider from './providers/UserProvider'
 
 function App() {
 
     //TODO add AuthGuard
     return (
-        <userProvider>
+        <UserProvider>
             <div id='box'>
                 <Header />
                 <main id='main-content'>
@@ -34,7 +35,7 @@ function App() {
                     </Routes>
                 </main>
             </div>
-        </userProvider>
+        </UserProvider>
     );
 }
 

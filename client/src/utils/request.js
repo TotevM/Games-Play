@@ -3,18 +3,6 @@ const request = async (method, url, data, options = {}) => {
         options.method = method;
     }
 
-    const authData = JSON.parse(localStorage.getItem('auth'));
-
-    if (authData.accessToken) {
-        options = {
-            ...options,
-            headers: {
-                'X-Authorization': authData.accessToken,
-                ...options.headers,
-            },
-        };
-    }
-
     if (data) {
         options = {
             ...options,
@@ -27,10 +15,6 @@ const request = async (method, url, data, options = {}) => {
     }
 
     const response = await fetch(url, options);
-
-    if (!responseContentType) {
-        return;
-    }
 
     if (!response.ok) {
         const result = await response.json();
