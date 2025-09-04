@@ -9,11 +9,12 @@ import GameCreate from './components/GameCreate';
 import GameDetails from './components/GameDetails';
 import GameEdit from './components/GameEdit';
 import UserProvider from './providers/UserProvider';
+import AuthGuard from './guards/AuthGuard';
+import GuestGuard from './guards/GuestGuard';
 
 import Logout from './components/Logout';
 
 function App() {
-    //TODO add AuthGuard
     return (
         <UserProvider>
             <div id='box'>
@@ -21,19 +22,28 @@ function App() {
                 <main id='main-content'>
                     <Routes>
                         <Route path='/' element={<Home />} />
-                        <Route path='/gameCreate' element={<GameCreate />} />
                         <Route path='/games' element={<Catalogue />} />
                         <Route
                             path='/games/:gameId/info'
                             element={<GameDetails />}
                         />
-                        <Route
-                            path='/games/:gameId/edit'
-                            element={<GameEdit />}
-                        />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/logout' element={<Logout />} />
-                        <Route path='/register' element={<Register />} />
+
+                        <Route element={<AuthGuard />}>
+                            <Route path='/logout' element={<Logout />} />
+                            <Route
+                                path='/gameCreate'
+                                element={<GameCreate />}
+                            />
+                            <Route
+                                path='/games/:gameId/edit'
+                                element={<GameEdit />}
+                            />
+                        </Route>
+
+                        <Route element={<GuestGuard />}>
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/register' element={<Register />} />
+                        </Route>
                     </Routes>
                 </main>
             </div>

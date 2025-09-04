@@ -1,11 +1,11 @@
 import { Outlet, Navigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 
-export default function AuthGuard() {
+export default function GuestGuard() {
     const { isAuthenticated } = useAuth();
 
-    if (!isAuthenticated) {
-        return <Navigate to='/login' />;
+    if (isAuthenticated) {
+        return <Navigate to='/' />;
     }
 
     return <Outlet />;
