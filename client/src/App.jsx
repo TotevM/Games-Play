@@ -8,10 +8,11 @@ import Register from './components/Register';
 import GameCreate from './components/GameCreate';
 import GameDetails from './components/GameDetails';
 import GameEdit from './components/GameEdit';
-import UserProvider from './providers/UserProvider'
+import UserProvider from './providers/UserProvider';
+
+import Logout from './components/Logout';
 
 function App() {
-
     //TODO add AuthGuard
     return (
         <UserProvider>
@@ -31,6 +32,7 @@ function App() {
                             element={<GameEdit />}
                         />
                         <Route path='/login' element={<Login />} />
+                        <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
                     </Routes>
                 </main>
