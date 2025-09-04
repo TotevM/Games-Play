@@ -12,7 +12,6 @@ export default function Register() {
     const registerHandler = async (formData) => {
         const { email, password, confirmPassword } =
             Object.fromEntries(formData);
-        console.log(email, password, confirmPassword);
 
         if (password !== confirmPassword) {
             console.log('Password mismatch'); //TODO handle this properly
