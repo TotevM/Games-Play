@@ -16,9 +16,6 @@ export default function GameCreate() {
             }),
         })
             .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            });
 
         redirect('/games');
     };

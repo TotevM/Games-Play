@@ -27,9 +27,6 @@ export default function GameEdit() {
             }),
         })
             .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            });
 
         redirect('/games/' + gameId + '/info');
     };
