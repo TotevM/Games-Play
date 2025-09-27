@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import heroImg from '../images/four_slider_img01.png';
+import heroImg from '/public/images/four_slider_img01.png';
 import { Link } from 'react-router';
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
     const [games, setGames] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3030/jsonstore/games')
+        fetch('http://localhost:3030/data/games')
             .then((response) => response.json())
             .then((res) => setGames(Object.values(res)));
     }, []);
