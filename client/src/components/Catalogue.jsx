@@ -5,7 +5,7 @@ export default function Catalogue() {
     const [games, setGames] = useState([]);
 
         useEffect(() => {
-            fetch('http://localhost:3030/jsonstore/games')
+            fetch('http://localhost:3030/data/games')
                 .then((response) => response.json())
                 .then((res) => setGames(Object.values(res)));
         }, []);

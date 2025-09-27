@@ -1,24 +1,22 @@
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router';
 import CommentsShow from './CommentsShow.jsx';
 import CommentsCreate from './CommentsCreate.jsx';
+import { useGame } from '../api/gameApi.js';
+import useAuth from '../hooks/useAuth.js';
 
 export default function GameDetails() {
-    const [game, setGame] = useState(null);
+    const { userId, accessToken } = useAuth();
     const { gameId } = useParams();
+    const { game } = useGame(gameId);
     const redirect = useNavigate();
-
-    useEffect(() => {
-        fetch('http://localhost:3030/jsonstore/games/' + gameId)
-            .then((response) => response.json())
-            .then((res) => setGame(res));
-    }, []);
+    const isOwner = userId === game._ownerId;
 
     const gameDeleteHandler = () => {
-        fetch('http://localhost:3030/jsonstore/games/' + gameId, {
+        fetch('http://localhost:3030/data/games/' + gameId, {
             method: 'DELETE',
+            headers: { 'X-Authorization': accessToken },
         })
             .then((res) => res.json())
             .then(() => {
@@ -41,14 +39,18 @@ export default function GameDetails() {
 
                 <CommentsShow />
 
-                <div className='buttons'>
-                    <Link to={`/games/${gameId}/edit`} className='button'>
-                        Edit
-                    </Link>
-                    <button onClick={gameDeleteHandler} className='button'>
-                        Delete
-                    </button>
-                </div>
+                {isOwner && (
+                    <div className='buttons'>
+                        <Link to={`/games/${gameId}/edit`} className='button'>
+                            Edit
+                        </Link>
+                        <button
+                            onClick={gameDeleteHandler}
+                            className='button'>
+                            Delete
+                        </button>
+                    </div>
+                )}
             </div>
 
             <CommentsCreate />

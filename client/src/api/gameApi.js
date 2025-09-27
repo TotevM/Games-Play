@@ -1,4 +1,7 @@
-const baseUrl = 'http://localhost:3030//data/games';
+import { useEffect, useState } from 'react';
+import request from '../utils/request';
+
+const baseUrl = 'http://localhost:3030/data/games';
 
 export const useGame = (gameId) => {
     const [game, setGame] = useState({});
