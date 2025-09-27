@@ -1,12 +1,17 @@
-import { useNavigate } from "react-router";
+import { use } from 'react';
+import { useNavigate } from 'react-router';
+import useAuth from '../hooks/useAuth.js';
 
 export default function GameCreate() {
     const redirect = useNavigate();
+    const { accessToken } = useAuth();
     const onSubmit = (formData) => {
-
-        fetch('http://localhost:3030/jsonstore/games', {
+        fetch('http://localhost:3030/data/games', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Authorization': accessToken,
+            },
             body: JSON.stringify({
                 title: formData.get('title'),
                 category: formData.get('category'),
@@ -14,8 +19,7 @@ export default function GameCreate() {
                 imageUrl: formData.get('imageUrl'),
                 summary: formData.get('summary'),
             }),
-        })
-            .then((res) => res.json())
+        }).then((res) => res.json());
 
         redirect('/games');
     };
